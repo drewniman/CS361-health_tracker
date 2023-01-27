@@ -18,7 +18,9 @@ def exercise():
 def nutrition():
     return render_template("nutrition.html", user=current_user)
 
-@views.route('/health_snapshot')
+@views.route('/health_snapshot', methods=['GET', 'POST'])
 @login_required
 def health_snapshot():
+    if request.method == 'POST':
+        fd
     return render_template("health_snapshot.html", user=current_user)
