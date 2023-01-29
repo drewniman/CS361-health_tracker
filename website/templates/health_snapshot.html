@@ -3,7 +3,10 @@
 {% block content %}
 <div align="center">
     <h1>Health Snapshot</h1>
-    <p>Enter your current values for the following health metrics</p>
+    <p>BMI (body mass index), blood pressure, waist circumference, and body fat percentage  are all associated with increased-risk mortality when elevated.
+        Take control by monitoring these health markers over time, and refer back to the dashboard to see your trends.
+    </p>
+    <p>Enter any health metrics you would like to update below:</p>
     <form method="POST">
         <label for="height">Height (in)</label><br>
         <input type="number" id="height" name="height"><br>
@@ -20,12 +23,6 @@
         <label for="bf_percent">Body Fat %</label><br>
         <input type="number" id="bf_percent" name="bf_percent"><br><br>
 
-        <!-- <label for="height">Height</label><br>
-        <input type="number" id="height" name="height">
-
-        <label for="height">Height</label><br>
-        <input type="number" id="height" name="height"> -->
-        <!-- <input type="submit" value="Submit"> -->
         <button type="submit" class="btn btn-primary">Update Metrics</button>
     </form>
 </div>

@@ -1,26 +1,13 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %}
 
 {% block content %}
-<!-- <h1 align="center">Notes</h1>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in user.notes %}
-    <li class="list-group-item">{{ node.data }}</li>
-    {% endfor %}
-</ul>
-<form method="POST">
-    <textarea name="note" id="note" class="form-control"></textarea>
-    <br/>
-    <div align="center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
-    </div>
-</form> -->
 <div align="center">
     <h1>{{ user.first_name }}'s Dashboard</h1>
     <p>Check out your workout for today, view your nutrition plan, or update your health metrics</p>
     <div class="btn-group">
-        <button class="btn btn-primary">Exercise</button>
-        <button class="btn btn-primary">Nutrition</button>
-        <button class="btn btn-primary" href="health_snapshot">Health Snapshot</button>
+        <button class="btn btn-light">Exercise</button>
+        <button class="btn btn-light">Nutrition</button>
+        <button class="btn btn-light" href="health_snapshot">Health Snapshot</button>
     </div>
 </div>
 {% endblock %}
