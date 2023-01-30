@@ -5,9 +5,19 @@
     <h1>{{ user.first_name }}'s Dashboard</h1>
     <p>Check out your workout for today, view your nutrition plan, or update your health metrics</p>
     <div class="btn-group">
-        <button class="btn btn-light">Exercise</button>
-        <button class="btn btn-light">Nutrition</button>
-        <button class="btn btn-light" href="health_snapshot">Health Snapshot</button>
+        <a href="/exercise">
+            <button class="btn btn-light">Exercise</button>
+        </a>
+        <a href="/nutrition">
+            <button class="btn btn-light">Nutrition</button>
+        </a>
+        <a href="/health_snapshot">
+            <button class="btn btn-light">Health Snapshot</button>
+        </a>
+    </div>
+    <div class="health-trends">
+        <p>This is where the user's health data trends will be displayed.</p>
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fowlcation.com%2Fstem%2FHow-to-Draw-a-Scientific-Graph&psig=AOvVaw3QrtgWeZIHRyo_Zutspv7c&ust=1675124628424000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCJjuhteD7vwCFQAAAAAdAAAAABAD" class="img-fluid" alt="...">
     </div>
 </div>
 {% endblock %}
