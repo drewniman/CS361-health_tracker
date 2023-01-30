@@ -30,19 +30,19 @@ def health_snapshot():
         waist = request.form.get('waist')
         bf_percent = request.form.get('bf_percent')
 
-        if not (36 < int(height) < 100):
-            flash('Height out of range', category='error')
-        elif not (80 < int(weight) < 800):
-            flash('Weight out of range', category='error')
-        elif not (80 < int(blood_pressure) < 220):
-            flash('Blood pressure out of range', category='error')
-        elif not (10 < int(waist) < 100):
-            flash('Waist circumference out of range', category='error')
-        elif not (3 < int(bf_percent) < 90):
-            flash('Body fat percentage out of range', category='error')
+        if height and not (36 < int(height) < 100):
+                flash('Height out of range', category='error')
+        elif weight and not (80 < int(weight) < 800):
+                flash('Weight out of range', category='error')
+        elif blood_pressure and not (80 < int(blood_pressure) < 220):
+                flash('Blood pressure out of range', category='error')
+        elif waist and not (10 < int(waist) < 100):
+                flash('Waist circumference out of range', category='error')
+        elif bf_percent and not (3 < int(bf_percent) < 90):
+                flash('Body fat percentage out of range', category='error')
         else:
             new_snapshot = Snapshot(height=height, weight=weight, blood_pressure=blood_pressure, waist=waist, bf_percent=bf_percent, user_id=current_user.id)
             db.session.add(new_snapshot)
             db.session.commit()
-            flash('Health metrics updated!', category='success')
+            flash('Health metrics updated! If you made a mistake, you can delete your last entry.', category='success')
     return render_template("health_snapshot.html", user=current_user)
