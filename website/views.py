@@ -2,14 +2,24 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from .models import Snapshot
 from flask_login import login_required, current_user
 from . import db
+import time
 
 views = Blueprint('views', __name__)
 
 @views.route('/')
 @login_required
 def home():
-    return render_template("home.html", user=current_user)
-
+    quote = ''
+    open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'w').close()
+    quoteService = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
+    quoteService.write('run')
+    quoteService.close()
+    time.sleep(5)
+    openDocument = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
+    quote = openDocument.readline()
+    openDocument.close()
+    return render_template("home.html", user=current_user, quote=quote)
+    
 @views.route('/exercise')
 @login_required
 def exercise():
