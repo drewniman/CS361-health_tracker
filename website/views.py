@@ -10,9 +10,14 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     weights = []
+    bp = []
     for snapshot in current_user.snapshots:
         weights.append(snapshot.weight)
-    dates = [i for i in range(len(weights))]
+        bp.append(snapshot.blood_pressure)
+    weights_x = [i for i in range(len(weights))]
+    bp_x = [i for i in range(len(bp))]
+
+    
 
     quote = ''
     open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'w').close()
@@ -23,7 +28,7 @@ def home():
     openDocument = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
     quote = openDocument.readline()
     openDocument.close()
-    return render_template("home.html", user=current_user, quote=quote, weights=weights, dates=dates)
+    return render_template("home.html", user=current_user, quote=quote, weights=weights, bp=bp, weights_x=weights_x, bp_x=bp_x)
     
 @views.route('/exercise')
 @login_required

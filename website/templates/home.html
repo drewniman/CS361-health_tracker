@@ -19,18 +19,22 @@
         <h3>{{ quote }}</h3>
     </div>
 
-    <div id="weight-graph"></div>
+    <div id="graphs"></div>
         <div style="height: 50vh; width: 50%;">
-            <canvas id="myChart"></canvas>
+            <canvas id="weightChart"></canvas>
+        </div>
+
+        <div style="height: 50vh; width: 50%;">
+            <canvas id="bpChart"></canvas>
         </div>
     
         <script>
-            const labels = {{ dates | tojson}};
+            const labels = {{ weights_x | tojson}};
     
             const data = {
                 labels: labels,
                 datasets: [{
-                    label: 'Weight',
+                    label: 'Weight (lbs)',
                     backgroundColor: 'rgb(255, 99, 132)',
                     borderColor: 'rgb(255, 99, 132)',
                     data: {{ weights | tojson}},
@@ -43,9 +47,32 @@
                 options: { maintainAspectRatio: false }
             };
     
-            const myChart = new Chart(
-                document.getElementById('myChart'),
+            const weightChart = new Chart(
+                document.getElementById('weightChart'),
                 config
+            );
+
+            const bpLabels = {{ bp_x | tojson}};
+
+            const bpData = {
+                labels: bpLabels,
+                datasets: [{
+                    label: 'Blood Pressure (mmHg)',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: {{ bp | tojson}},
+                }]
+            };
+
+            const bpConfig = {
+                type: 'line',
+                data: bpData,
+                options: { maintainAspectRatio: false }
+            };
+
+            const bpChart = new Chart(
+                document.getElementById('bpChart'),
+                bpConfig
             );
     
         </script>
