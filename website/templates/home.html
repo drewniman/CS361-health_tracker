@@ -18,5 +18,37 @@
     <div class="quote">
         <h3>{{ quote }}</h3>
     </div>
+
+    <div id="weight-graph"></div>
+        <div style="height: 50vh; width: 50%;">
+            <canvas id="myChart"></canvas>
+        </div>
+    
+        <script>
+            const labels = {{ dates | tojson}};
+    
+            const data = {
+                labels: labels,
+                datasets: [{
+                    label: 'Weight',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: {{ weights | tojson}},
+                }]
+            };
+    
+            const config = {
+                type: 'line',
+                data: data,
+                options: { maintainAspectRatio: false }
+            };
+    
+            const myChart = new Chart(
+                document.getElementById('myChart'),
+                config
+            );
+    
+        </script>
+    </div>
 </div>
 {% endblock %}
