@@ -11,22 +11,31 @@ views = Blueprint('views', __name__)
 def home():
     weights = []
     bp = []
+    heights = []
+    waists = []
+    bf_percents = []
     for snapshot in current_user.snapshots:
         weights.append(snapshot.weight)
         bp.append(snapshot.blood_pressure)
+        heights.append(snapshot.height)
+        waists.append(snapshot.waist)
+        bf_percents.append(snapshot.bf_percent)
     weights_x = [i for i in range(len(weights))]
     bp_x = [i for i in range(len(bp))]
+    heights_x = [i for i in range(len(heights))]
+    waists_x = [i for i in range(len(waists))]
+    bf_percents_x = [i for i in range(len(bf_percents))]
 
     quote = ''
-    open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'w').close()
-    quoteService = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
-    quoteService.write('run')
-    quoteService.close()
-    time.sleep(5)
-    openDocument = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
-    quote = openDocument.readline()
-    openDocument.close()
-    return render_template("home.html", user=current_user, quote=quote, weights=weights, bp=bp, weights_x=weights_x, bp_x=bp_x)
+    # open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'w').close()
+    # quoteService = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
+    # quoteService.write('run')
+    # quoteService.close()
+    # time.sleep(5)
+    # openDocument = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
+    # quote = openDocument.readline()
+    # openDocument.close()
+    return render_template("home.html", user=current_user, quote=quote, weights=weights, bp=bp, heights=heights, waists=waists, bf_percents=bf_percents, weights_x=weights_x, bp_x=bp_x, heights_x=heights_x, waists_x=waists_x, bf_percents_x=bf_percents_x)
     
 @views.route('/exercise')
 @login_required

@@ -21,18 +21,53 @@
 
     <div id="graphs"></div>
         <div style="height: 50vh; width: 50%;">
+            <canvas id="heightChart"></canvas>
+        </div>
+
+        <div style="height: 50vh; width: 50%;">
             <canvas id="weightChart"></canvas>
         </div>
 
         <div style="height: 50vh; width: 50%;">
             <canvas id="bpChart"></canvas>
         </div>
+
+        <div style="height: 50vh; width: 50%;">
+            <canvas id="waistChart"></canvas>
+        </div>
+
+        <div style="height: 50vh; width: 50%;">
+            <canvas id="bfChart"></canvas>
+        </div>
     
         <script>
-            const labels = {{ weights_x | tojson}};
+            const heightLabels = {{ heights_x | tojson}};
     
-            const data = {
-                labels: labels,
+            const heightData = {
+                labels: heightLabels,
+                datasets: [{
+                    label: 'Height (in)',
+                    backgroundColor: 'rgb(144,238,144)',
+                    borderColor: 'rgb(144,238,144)',
+                    data: {{ heights | tojson}},
+                }]
+            };
+
+            const heightConfig = {
+                type: 'line',
+                data: heightData,
+                options: { maintainAspectRatio: false }
+            };
+
+            const heightChart = new Chart(
+                document.getElementById('heightChart'),
+                heightConfig
+            );
+
+            const weightLabels = {{ weights_x | tojson}};
+    
+            const weightData = {
+                labels: weightLabels,
                 datasets: [{
                     label: 'Weight (lbs)',
                     backgroundColor: 'rgb(176,224,230)',
@@ -41,15 +76,15 @@
                 }]
             };
     
-            const config = {
+            const weightConfig = {
                 type: 'line',
-                data: data,
+                data: weightData,
                 options: { maintainAspectRatio: false }
             };
     
             const weightChart = new Chart(
                 document.getElementById('weightChart'),
-                config
+                weightConfig
             );
 
             const bpLabels = {{ bp_x | tojson}};
@@ -73,6 +108,52 @@
             const bpChart = new Chart(
                 document.getElementById('bpChart'),
                 bpConfig
+            );
+
+            const waistLabels = {{ waists_x | tojson}};
+    
+            const waistData = {
+                labels: waistLabels,
+                datasets: [{
+                    label: 'Waist Circumference (in)',
+                    backgroundColor: 'rgb(255,127,80)',
+                    borderColor: 'rgb(255,127,80)',
+                    data: {{ waists | tojson}},
+                }]
+            };
+
+            const waistConfig = {
+                type: 'line',
+                data: waistData,
+                options: { maintainAspectRatio: false }
+            };
+
+            const waistChart = new Chart(
+                document.getElementById('waistChart'),
+                waistConfig
+            );
+
+            const bfLabels = {{ bf_percents_x | tojson}};
+    
+            const bfData = {
+                labels: bfLabels,
+                datasets: [{
+                    label: 'Body Fat (%)',
+                    backgroundColor: 'rgb(218,112,214)',
+                    borderColor: 'rgb(218,112,214)',
+                    data: {{ bf_percents | tojson}},
+                }]
+            };
+
+            const bfConfig = {
+                type: 'line',
+                data: bfData,
+                options: { maintainAspectRatio: false }
+            };
+
+            const bfChart = new Chart(
+                document.getElementById('bfChart'),
+                bfConfig
             );
     
         </script>
