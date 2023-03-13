@@ -17,8 +17,6 @@ def home():
     weights_x = [i for i in range(len(weights))]
     bp_x = [i for i in range(len(bp))]
 
-    
-
     quote = ''
     open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'w').close()
     quoteService = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
@@ -34,11 +32,6 @@ def home():
 @login_required
 def exercise():
     return render_template("exercise.html", user=current_user)
-
-@views.route('/nutrition')
-@login_required
-def nutrition():
-    return render_template("nutrition.html", user=current_user)
 
 @views.route('/health_snapshot', methods=['GET', 'POST'])
 @login_required
