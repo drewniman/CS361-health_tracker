@@ -15,11 +15,11 @@ def home():
     waists = []
     bf_percents = []
     for snapshot in current_user.snapshots:
-        weights.append(snapshot.weight)
-        bp.append(snapshot.blood_pressure)
-        heights.append(snapshot.height)
-        waists.append(snapshot.waist)
-        bf_percents.append(snapshot.bf_percent)
+        if snapshot.weight: weights.append(snapshot.weight)
+        if snapshot.blood_pressure: bp.append(snapshot.blood_pressure)
+        if snapshot.height: heights.append(snapshot.height)
+        if snapshot.waist: waists.append(snapshot.waist)
+        if snapshot.bf_percent: bf_percents.append(snapshot.bf_percent)
     weights_x = [i for i in range(len(weights))]
     bp_x = [i for i in range(len(bp))]
     heights_x = [i for i in range(len(heights))]
@@ -27,14 +27,14 @@ def home():
     bf_percents_x = [i for i in range(len(bf_percents))]
 
     quote = ''
-    # open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'w').close()
-    # quoteService = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
-    # quoteService.write('run')
-    # quoteService.close()
-    # time.sleep(5)
-    # openDocument = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
-    # quote = openDocument.readline()
-    # openDocument.close()
+    open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'w').close()
+    quoteService = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
+    quoteService.write('run')
+    quoteService.close()
+    time.sleep(5)
+    openDocument = open('/Users/drewniman/osu-classes/CS-361/exercise_tracker/AimeesMicroservice/quoteService.txt', 'r+')
+    quote = openDocument.readline()
+    openDocument.close()
     return render_template("home.html", user=current_user, quote=quote, weights=weights, bp=bp, heights=heights, waists=waists, bf_percents=bf_percents, weights_x=weights_x, bp_x=bp_x, heights_x=heights_x, waists_x=waists_x, bf_percents_x=bf_percents_x)
     
 @views.route('/exercise')
@@ -66,5 +66,5 @@ def health_snapshot():
             new_snapshot = Snapshot(height=height, weight=weight, blood_pressure=blood_pressure, waist=waist, bf_percent=bf_percent, user_id=current_user.id)
             db.session.add(new_snapshot)
             db.session.commit()
-            flash('Health metrics updated! If you made a mistake, you can delete your last entry.', category='success')
+            flash('Health metrics updated!', category='success')
     return render_template("health_snapshot.html", user=current_user)
